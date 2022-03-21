@@ -1,5 +1,3 @@
-<-- -*- mode:markdown -*- -->
-
 # docker-roswell
 
 Roswell(SBCL)の実行環境を構築するDocker Imageです。
