@@ -1,0 +1,23 @@
+#!/bin/sh
+#|-*- mode:lisp -*-|#
+#|
+exec ros -Q -- $0 "$@"
+|#
+(progn ;;init forms
+  (ros:ensure-asdf)
+  #+quicklisp (ql:quickload 'swank :silent t)
+  )
+
+(defpackage :ros.script.project-starter
+  (:use :cl))
+(in-package :ros.script.project-starter)
+
+(defun main (&rest argv)
+  (in-package :cl-user)  
+  (let ((port (parse-integer (first argv))))
+    (swank:create-server :port port :dont-close t :style :spawn :interface "0.0.0.0"))
+   (loop (sleep 10))
+  )
+
+  
+;;; vim: set ft=lisp lisp:
